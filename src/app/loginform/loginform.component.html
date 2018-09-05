@@ -1,0 +1,35 @@
+<div class="demo">
+  <div class="login">
+    <svg class="circle__svg" width="100" height="100">
+      <circle cx="50" cy="50" r="35" fill="white" />
+    </svg>
+    <svg class="mount__svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1"
+      x="0px" y="0px" viewBox="0 0 455 455" style="enable-background:new 0 0 455 455;" xml:space="preserve" width="512px" height="512px"><g>
+        <g>
+          <polygon points="266.498,191.677 305.833,220.011 334.904,199.072 266.503,125.164 198.102,199.072 227.168,220.01  " data-original="#000000"
+            class="active-path" fill="#000000" />
+          <polygon points="355.435,221.256 305.833,256.983 266.499,228.65 231.121,254.136 301.181,329.836 455,329.836 455,328.836  "
+            data-original="#000000" class="active-path" fill="#000000" />
+          <polygon points="0,329.836 260.305,329.836 130.153,189.205  " data-original="#000000" class="active-path" fill="#000000"
+          />
+        </g>
+      </g> </svg>
+    <div class="login__title">LOG IN</div>
+    <div class="login__form">
+      <div class="login__row">
+        <svg class="login__icon name svg-icon" viewBox="0 0 20 20">
+          <path d="M0,20 a10,8 0 0,1 20,0z M10,0 a4,4 0 0,1 0,8 a4,4 0 0,1 0,-8" />
+        </svg>
+        <input type="text" class="login__input name" placeholder="Username" />
+      </div>
+      <div class="login__row">
+        <svg class="login__icon pass svg-icon" viewBox="0 0 20 20">
+          <path d="M0,20 20,20 20,8 0,8z M10,13 10,16z M4,8 a6,8 0 0,1 12,0" />
+        </svg>
+        <input type="password" class="login__input pass" placeholder="Password" />
+      </div>
+      <button type="button" class="login__submit">Login</button>
+      <p class="login__forgot"><a [routerLink]="['/forgotpassword']" routerLinkActive="router-link-active">Forgot Password?
+        </a></p>
+      <p class="login__signup"><a [routerLink]="['/register']" routerLinkActive="router-link-active">Register</a></p>
+    </div>

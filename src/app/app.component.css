@@ -1,0 +1,13 @@
+.cont {
+  position: relative;
+  height: 100%;
+  background-image: linear-gradient(
+      to right bottom,
+      rgba(227, 241, 241, 0.8),
+      rgba(224, 233, 235, 0.8)
+    ),
+    url('./new-york.jpg');
+  background-size: cover;
+  overflow: auto;
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
