@@ -22,15 +22,26 @@ app.use(bodyParser.urlencoded({ extended: false }));
 //   .then(() => console.log('MongoDB Connected'))
 //   .catch(err => console.log(err));
 
-mongoose.promise = require('bluebird');
+// mongoose.promise = require('bluebird');
+
+// mongoose
+//   .connect(
+//     'mongodb://localhost/devconnector',
+//     { promiseLibrary: require('bluebird') }
+//   )
+//   .then(() => console.log('connection succesful'))
+//   .catch(err => console.error(err));
 
 mongoose
   .connect(
-    'mongodb://localhost/devconnector',
-    { promiseLibrary: require('bluebird') }
+    'mongodb+srv://insightorb:r9kxTQQoaiPH4seo@cluster0-nrwum.mongodb.net/test?retryWrites=true'
   )
-  .then(() => console.log('connection succesful'))
-  .catch(err => console.error(err));
+  .then(() => {
+    console.log('Connected to database!');
+  })
+  .catch(() => {
+    console.log('Connection failed!');
+  });
 
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
