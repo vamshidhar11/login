@@ -5,6 +5,10 @@
   }
 }
 
+mat-spinner {
+  margin: auto;
+}
+
 svg {
   display: inline-block;
   width: 2rem;
@@ -88,7 +92,7 @@ button {
   color: white;
   font-size: 16px;
 }
-.login__form {
+.login-form {
   position: absolute;
   top: 34%;
   left: 0;
