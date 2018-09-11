@@ -20,7 +20,6 @@ export class AuthService {
     return this.user;
   }
 
-
   createUser(username: string, email: string, password: string) {
     const authData: AuthData = {
       username: username,
@@ -55,6 +54,7 @@ export class AuthService {
     this.http
       .get<{ username: string }>('http://localhost:3000/api/user/home-page')
       .subscribe(response => {
+        console.log(response);
         this.user = response.username;
         console.log(this.user);
       });
