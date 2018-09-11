@@ -7,13 +7,12 @@ import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private isAuthenticated = false;
   private token: string;
-  private tokenTimer: any;
-  private userId: string;
-  // private authStatusListener = new Subject<boolean>();
-
   constructor(private http: HttpClient, private router: Router) {}
+
+  getToken() {
+    return this.token;
+  }
 
   createUser(username: string, email: string, password: string) {
     const authData: AuthData = {
@@ -29,15 +28,19 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    const authData: AuthLogin = { email: email, password: password };
+    const authLogin: AuthLogin = { email: email, password: password };
     this.http
-      .post<{ token: string; expiresIn: number; userId: string }>(
+      .post<{ token: string }>(
         'http://localhost:3000/api/user/login',
-        authData
+        authLogin
       )
       .subscribe(response => {
+        console.log(response);
         const token = response.token;
         this.token = token;
+        if (token) {
+          this.router.navigate(['/home-page']);
+        }
       });
   }
 }

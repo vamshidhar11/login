@@ -15,7 +15,6 @@ export class RegisterComponent {
     if (form.invalid) {
       return;
     }
-    console.log(form.value);
     this.authService.createUser(
       form.value.username,
       form.value.email,

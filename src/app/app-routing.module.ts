@@ -1,3 +1,4 @@
+import { HomePageComponent } from './home-page/home-page.component';
 import { NgModule } from '@angular/core';
 import { LoginformComponent } from './loginform/loginform.component';
 import { Routes, RouterModule } from '@angular/router';
@@ -11,7 +12,8 @@ const appRoutes: Routes = [
     pathMatch: 'full',
   },
   { path: 'register', component: RegisterComponent },
-  { path: 'forgotpassword', component: ForgotpasswordComponent }
+  { path: 'forgotpassword', component: ForgotpasswordComponent },
+  { path: 'home-page', component: HomePageComponent }
 ];
 
 @NgModule({

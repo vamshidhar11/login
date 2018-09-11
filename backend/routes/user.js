@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
+// const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
@@ -64,5 +65,18 @@ router.post('/login', (req, res, next) => {
       });
     });
 });
+
+// router.get('/home-page', checkAuth, (req, res, next) => {
+//   User.findOne({ email: decodedToken.email }).then(user => {
+//     res
+//       .status(200)
+//       .json({
+//         user: user
+//       })
+//       .catch(err => {
+//         console.log(err);
+//       });
+//   });
+// });
 
 module.exports = router;
