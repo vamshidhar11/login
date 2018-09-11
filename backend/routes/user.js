@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const User = require('../models/user');
-// const checkAuth = require('../middleware/check-auth');
+const checkAuth = require('../middleware/check-auth');
 
 const router = express.Router();
 
@@ -66,17 +66,22 @@ router.post('/login', (req, res, next) => {
     });
 });
 
-// router.get('/home-page', checkAuth, (req, res, next) => {
-//   User.findOne({ email: decodedToken.email }).then(user => {
-//     res
-//       .status(200)
-//       .json({
-//         user: user
-//       })
-//       .catch(err => {
-//         console.log(err);
-//       });
-//   });
-// });
+router.get('/home-page', checkAuth, (req, res, next) => {
+  const token = req.headers.authorization.split(' ')[1];
+  const decodedToken = jwt.verify(token, 'secret_this_should_be_longer');
+  const email = decodedToken.email;
+  User.findOne({ email: email })
+    .then(user => {
+      res.status(200).json({
+        username: user.username,
+        email: user.email
+      });
+    })
+    .catch(err => {
+      res.status(200).json({
+        message: 'User Not found'
+      });
+    });
+});
 
 module.exports = router;

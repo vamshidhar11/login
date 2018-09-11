@@ -8,11 +8,18 @@ import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private token: string;
+  user: string;
+
   constructor(private http: HttpClient, private router: Router) {}
 
   getToken() {
     return this.token;
   }
+
+  getUser() {
+    return this.user;
+  }
+
 
   createUser(username: string, email: string, password: string) {
     const authData: AuthData = {
@@ -41,6 +48,15 @@ export class AuthService {
         if (token) {
           this.router.navigate(['/home-page']);
         }
+      });
+  }
+
+  homePage() {
+    this.http
+      .get<{ username: string }>('http://localhost:3000/api/user/home-page')
+      .subscribe(response => {
+        this.user = response.username;
+        console.log(this.user);
       });
   }
 }

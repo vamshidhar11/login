@@ -1,3 +1,4 @@
+import { AuthService } from './../auth.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -5,4 +6,14 @@ import { Component, OnInit } from '@angular/core';
   templateUrl: './home-page.component.html',
   styleUrls: ['./home-page.component.css']
 })
-export class HomePageComponent {}
+export class HomePageComponent implements OnInit {
+  username: string;
+
+  constructor(private authService: AuthService) {}
+
+  ngOnInit() {
+    this.authService.homePage();
+    this.username = this.authService.getUser();
+    console.log(this.username);
+  }
+}
