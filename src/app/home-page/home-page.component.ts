@@ -9,11 +9,12 @@ import { Component, OnInit } from '@angular/core';
 export class HomePageComponent implements OnInit {
   username: string;
 
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService) {
+    this.username = this.authService.getUser();
+  }
 
   ngOnInit() {
     this.authService.homePage();
-    this.username = this.authService.getUser();
     console.log(this.username);
   }
 }

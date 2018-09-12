@@ -8,6 +8,10 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
+    "build:ssr": "npm run build:client-and-server-bundles && npm run webpack:server",
+    "serve:ssr": "node dist/server",
+    "build:client-and-server-bundles": "ng build --prod && ng run login:server",
+    "webpack:server": "webpack --config webpack.server.config.js --progress --colors",
     "start:server": "nodemon server.js"
   },
   "private": true,
@@ -22,7 +26,10 @@
     "@angular/material": "^6.4.7",
     "@angular/platform-browser": "^6.1.0",
     "@angular/platform-browser-dynamic": "^6.1.0",
+    "@angular/platform-server": "^6.1.7",
     "@angular/router": "^6.1.0",
+    "@nguniversal/express-engine": "^6.1.0",
+    "@nguniversal/module-map-ngfactory-loader": "^6.1.0",
     "@types/cors": "^2.8.4",
     "@types/jsonwebtoken": "^7.2.8",
     "bcrypt": "^3.0.0",
@@ -33,6 +40,7 @@
     "mongoose": "^5.2.13",
     "mongoose-unique-validator": "^2.0.1",
     "rxjs": "^6.0.0",
+    "ts-loader": "^5.1.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
@@ -55,6 +63,7 @@
     "protractor": "~5.3.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
-    "typescript": "~2.7.2"
+    "typescript": "~2.7.2",
+    "webpack-cli": "^3.1.0"
   }
 }

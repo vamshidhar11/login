@@ -1,16 +1,26 @@
 import { AuthData } from './auth-data.model';
 import { AuthLogin } from './auth-login-data.model';
 
-import { Injectable } from '@angular/core';
+import { Injectable, Optional, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { APP_BASE_HREF } from '@angular/common';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  private url = 'api/user';
   private token: string;
   user: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private router: Router,
+    @Optional()
+    @Inject(APP_BASE_HREF)
+    origin: string
+  ) {
+    this.url = `${origin}${this.url}`;
+  }
 
   getToken() {
     return this.token;
@@ -27,7 +37,7 @@ export class AuthService {
       password: password
     };
     this.http
-      .post('http://localhost:3000/api/user/signup', authData)
+      .post(`http://localhost:3000/${this.url}/signup`, authData)
       .subscribe(response => {
         console.log(response);
       });
@@ -37,7 +47,7 @@ export class AuthService {
     const authLogin: AuthLogin = { email: email, password: password };
     this.http
       .post<{ token: string }>(
-        'http://localhost:3000/api/user/login',
+        `http://localhost:3000/${this.url}/login`,
         authLogin
       )
       .subscribe(response => {
@@ -52,7 +62,7 @@ export class AuthService {
 
   homePage() {
     this.http
-      .get<{ username: string }>('http://localhost:3000/api/user/home-page')
+      .get<{ username: string }>(`http://localhost:3000/${this.url}/home-page`)
       .subscribe(response => {
         console.log(response);
         this.user = response.username;

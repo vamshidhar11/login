@@ -12,6 +12,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthInterceptor } from './auth-interceptor';
 import { HomePageComponent } from './home-page/home-page.component';
 
+import { PLATFORM_ID, APP_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     HomePageComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({ appId: 'login' }),
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
@@ -32,4 +35,14 @@ import { HomePageComponent } from './home-page/home-page.component';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+  constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
+    @Inject(APP_ID) private appId: string
+  ) {
+    const platform = isPlatformBrowser(platformId)
+      ? 'in the browser'
+      : 'on the server';
+    console.log(`Running ${platform} with appId=${appId}`);
+  }
+}
