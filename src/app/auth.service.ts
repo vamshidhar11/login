@@ -12,15 +12,7 @@ export class AuthService {
   private token: string;
   user: string;
 
-  constructor(
-    private http: HttpClient,
-    private router: Router,
-    @Optional()
-    @Inject(APP_BASE_HREF)
-    origin: string
-  ) {
-    this.url = `${origin}${this.url}`;
-  }
+  constructor(private http: HttpClient, private router: Router) {}
 
   getToken() {
     return this.token;
